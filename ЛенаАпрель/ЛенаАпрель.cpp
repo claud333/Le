@@ -4,52 +4,15 @@
 #include <fstream> 
 #include <cstdlib>
 #include <vector>
-using namespace std;//qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqаапаaa
+using namespace std;
 struct ych
 {
 	char lastname[20];
 	double sumBall;
 	int kolBall;
 };
-//dsdsdsdsdsdsdsdsdsdsds
 
-int openFile(char *name,ych  *a)//открытие фаила и считывание
-{
-	ifstream fin;
-	fin.open(name);
-	if (!fin.is_open())
-	{
-		cout << "error open";
-		system("pause");
-		return 0;
-	}
-
-
-	int ball, i = 0, l = 0;
-	while (!fin.eof())
-	{
-		l+=10;
-		a = (ych*)realloc(a, l*sizeof(ych*));
-		
-		a[i].sumBall = 0;
-		a[i].kolBall = 0;
-		fin >> a[i].lastname;
-		
-
-		while (fin.peek() != '\n' && !fin.eof())
-		{
-			fin >> ball;
-			a[i].sumBall += ball; a[i].kolBall++;
-		}
-		a[i].sumBall = a[i].sumBall / a[i].kolBall;
-		
-		i++;
-	}
-	fin.close();
-	 return i;
-
-}
-void out(ych *a,int size)//вывод на экран / в фаил 
+void out(ych *a, int size)//вывод на экран / в фаил 
 {
 	size = 3;
 	cout << "1.На экран\n2.В фаил" << endl;
@@ -94,6 +57,47 @@ void out(ych *a,int size)//вывод на экран / в фаил
 	system("pause");
 }
 
+int openFile(char *name,ych  *a)//открытие фаила и считывание
+{
+	ifstream fin;
+	fin.open(name);
+	if (!fin.is_open())
+	{
+		cout << "error open";
+		system("pause");
+		exit(1);
+	}
+
+
+	int ball, i = 0;
+	while (!fin.eof())
+	{
+		
+		a = (ych*)realloc(a,((i+1)*sizeof(ych)));
+		
+		a[i].sumBall = 0;
+		a[i].kolBall = 0;
+		fin >> a[i].lastname;
+		
+
+		while (fin.peek() != '\n' && !fin.eof())
+		{
+			fin >> ball;
+			a[i].sumBall += ball; a[i].kolBall++;
+		}
+		a[i].sumBall = a[i].sumBall / a[i].kolBall;
+		
+		i++;
+	}
+
+	
+	fin.close();
+	out(a, i);
+	// return i;
+
+}
+
+
 int main()
 {
 	ych*a;
@@ -105,8 +109,8 @@ int main()
 	cout << "Введите имя фаила" << endl;
 	cin >> namefile;
 	int size;
-	if (size=openFile(namefile,a)==0) { return 0; }
-	out(a,size);
+	size = openFile(namefile, a);
+//	out(a,size);
 	return 0;
 }
 
