@@ -11,7 +11,7 @@ struct ych
 	double sumBall;
 	int kolBall;
 };
-
+//dsdsdsdsdsdsdsdsdsdsds
 
 int openFile(char *name,ych  *a)//открытие фаила и считывание
 {
