@@ -93,7 +93,7 @@ int openFile(char *name,ych  *a)//открытие фаила и считывание
 	
 	fin.close();
 	out(a, i);
-	// return i;
+	
 
 }
 
@@ -102,15 +102,15 @@ int main()
 {
 	ych*a;
 	a = (ych*)malloc(1);
-	//a = (ych*) realloc (a, 2 * sizeof(ych));
+	
 	setlocale(LC_ALL, "rus");
-	//vector<ych> a;
+	
 	char namefile[20];
 	cout << "¬ведите им€ фаила" << endl;
 	cin >> namefile;
 	int size;
 	size = openFile(namefile, a);
-//	out(a,size);
+
 	return 0;
 }
 
