@@ -4,7 +4,7 @@
 #include <fstream> 
 #include <cstdlib>
 #include <vector>
-using namespace std;
+using namespace std;//qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq‡‡Ô‡aa
 struct ych
 {
 	char lastname[20];
